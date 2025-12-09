@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MarriedMore Calculator
 
-## Getting Started
+A beautiful calculator to find the date when you've been married more than not - the day you've officially spent more of your life married than unmarried.
 
-First, run the development server:
+## Features
+
+- **Basic Calculator**: Simple date-based calculation
+- **Advanced Calculator**: Precise datetime calculation with support for both partners
+- Beautiful, modern UI with animations
+- Fully responsive design
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Radix UI components
+
+## Local Development
+
+1. Navigate to the web directory:
+   ```bash
+   cd web
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Deployment to Vercel
+
+### First Time Setup
+
+1. **Push to GitHub**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin <your-github-repo-url>
+   git push -u origin main
+   ```
+
+2. **Deploy on Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Sign in with GitHub
+   - Click "Import Project"
+   - Select your repository
+   - Vercel will auto-detect the Next.js configuration
+   - Click "Deploy"
+
+3. **Get Your URL**:
+   - After deployment, copy your Vercel URL (e.g., `https://your-app.vercel.app`)
+
+### Subsequent Deployments
+
+Vercel automatically deploys on every push to your main branch. Just commit and push your changes:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git add .
+git commit -m "Your changes"
+git push
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Embedding in Shopify
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This calculator is configured to work as an embedded iframe in Shopify stores.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Steps to Embed:
 
-## Learn More
+1. **In Shopify Admin**:
+   - Go to: Online Store → Pages → Add page
+   - Create a new page (e.g., "MarriedMore Calculator")
 
-To learn more about Next.js, take a look at the following resources:
+2. **Add Custom HTML**:
+   - In the page editor, add a "Custom Liquid" or "Custom HTML" block
+   - Insert the following code:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```html
+   <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+     <iframe 
+       src="https://YOUR-VERCEL-URL.vercel.app"
+       width="100%" 
+       height="1200px"
+       frameborder="0"
+       style="border: none; overflow: hidden;"
+       scrolling="no"
+     ></iframe>
+   </div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   <script>
+     // Auto-resize iframe based on content
+     window.addEventListener('message', function(e) {
+       if (e.data.height) {
+         document.querySelector('iframe').style.height = e.data.height + 'px';
+       }
+     });
+   </script>
+   ```
 
-## Deploy on Vercel
+3. **Replace `YOUR-VERCEL-URL`** with your actual Vercel deployment URL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Save and Publish** the page in Shopify
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+.
+├── web/                    # Next.js application
+│   ├── app/
+│   │   ├── married-more/  # Calculator page
+│   │   ├── layout.tsx     # Root layout
+│   │   ├── page.tsx       # Homepage (shows calculator)
+│   │   └── globals.css    # Global styles
+│   ├── components/
+│   │   └── ui/            # UI components (buttons, cards, etc.)
+│   ├── lib/
+│   │   └── utils.ts       # Utility functions
+│   └── package.json
+├── vercel.json            # Vercel deployment config
+└── README.md              # This file
+```
+
+## Configuration
+
+The app is configured for iframe embedding:
+- `X-Frame-Options: ALLOWALL` header allows embedding in any domain
+- Responsive design adapts to different screen sizes
+- Clean, modern UI optimized for e-commerce stores
+
+## License
+
+Private project
