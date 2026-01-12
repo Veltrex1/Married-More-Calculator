@@ -151,7 +151,7 @@ function BasicCalculator() {
     const birth = parseInputDate(birthInput)
     const wedding = parseInputDate(weddingInput)
     if (!birth || !wedding) {
-      setError('These dates don’t look right, please double-check.')
+      setError("These dates don't look right, please double-check.")
       return
     }
     const birthDay = startOfDayLocal(birth)
@@ -184,19 +184,19 @@ function BasicCalculator() {
   return (
     <div className="space-y-6">
       {error && (
-        <div className="flex items-start gap-2 rounded-lg bg-rose-50/80 p-3 text-rose-700 ring-1 ring-rose-200/60">
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-100 text-xs font-semibold">!</span>
+        <div className="flex items-start gap-3 rounded-2xl bg-[#C4A4A4]/10 p-4 text-[#4A5D4A] ring-1 ring-[#C4A4A4]/30">
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#C4A4A4]/20 text-xs font-semibold">!</span>
           <div className="space-y-0.5">
-            <p className="text-sm">Let’s fix a couple of dates before we continue.</p>
-            <p className="text-xs text-rose-600/90">{error}</p>
+            <p className="text-sm font-medium">Let's fix a couple of dates before we continue.</p>
+            <p className="text-xs text-[#7A8A7A]">{error}</p>
           </div>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4 text-left">
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <Label htmlFor="dob" className="text-slate-800">
+      <form onSubmit={handleSubmit} className="space-y-5 text-left">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="dob" className="text-[#4A5D4A] font-medium">
               Date of birth
             </Label>
             <Input
@@ -204,11 +204,11 @@ function BasicCalculator() {
               type="date"
               value={birthInput}
               onChange={(e) => setBirthInput(e.target.value)}
-              className="bg-white/90 focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+              className="bg-white/80 border-[#C4A4A4]/30 text-[#4A5D4A] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
             />
           </div>
-          <div className="space-y-1">
-            <Label htmlFor="wedding" className="text-slate-800">
+          <div className="space-y-2">
+            <Label htmlFor="wedding" className="text-[#4A5D4A] font-medium">
               Wedding date
             </Label>
             <Input
@@ -216,7 +216,7 @@ function BasicCalculator() {
               type="date"
               value={weddingInput}
               onChange={(e) => setWeddingInput(e.target.value)}
-              className="bg-white/90 focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+              className="bg-white/80 border-[#C4A4A4]/30 text-[#4A5D4A] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
             />
           </div>
         </div>
@@ -228,7 +228,7 @@ function BasicCalculator() {
         >
           <Button
             type="submit"
-            className="bg-rose-600 text-white shadow-sm hover:bg-rose-600/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+            className="bg-[#C4A4A4] text-white shadow-sm hover:bg-[#B39494] rounded-full px-6 py-2 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
           >
             Calculate MarriedMore date
           </Button>
@@ -237,47 +237,47 @@ function BasicCalculator() {
 
       {result && (
         <>
-          <Separator className="my-2 opacity-50" />
+          <Separator className="my-4 bg-[#C4A4A4]/20" />
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="rounded-xl bg-white/80 p-6 shadow-sm ring-1 ring-slate-200/60"
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="rounded-2xl bg-white/90 p-6 shadow-sm ring-1 ring-[#C4A4A4]/20"
           >
-            <div className="space-y-2">
+            <div className="space-y-3">
               {result.weddingInFuture && (
-                <p className="text-sm italic text-slate-500">
+                <p className="text-sm italic text-[#7A8A7A]">
                   Assuming you marry on this date, your MarriedMore day will be…
                 </p>
               )}
-              <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+              <p className="text-xs font-medium uppercase tracking-wide text-[#7A8A7A]">
                 Your MarriedMore date
               </p>
-              <div className="text-2xl font-semibold text-rose-600 md:text-3xl">
+              <div className="font-[var(--font-cormorant)] text-3xl font-semibold italic text-[#4A5D4A] md:text-4xl">
                 {formatLongDate(result.marriedMoreDate)}
               </div>
-              <p className="text-slate-700">
-                You’ll be{' '}
-                <span className="font-medium text-rose-600">
+              <p className="text-[#4A5D4A]">
+                You'll be{' '}
+                <span className="font-semibold text-[#C4A4A4]">
                   {result.ageYears} years old
                 </span>{' '}
                 on this day.
               </p>
               {result.isFuture ? (
-                <p className="text-slate-700">
-                  You’ll reach this milestone in{' '}
-                  <span className="font-medium text-rose-600">
+                <p className="text-[#4A5D4A]">
+                  You'll reach this milestone in{' '}
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.daysDifference} days
                   </span>
                   .
                 </p>
               ) : (
-                <p className="text-slate-700">
+                <p className="text-[#4A5D4A]">
                   You reached this milestone{' '}
-                  <span className="font-medium text-rose-600">
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.daysDifference} days
                   </span>{' '}
-                  ago. 🎉
+                  ago. Congratulations! 💍
                 </p>
               )}
             </div>
@@ -287,9 +287,9 @@ function BasicCalculator() {
 
       {!result && (
         <>
-          <Separator className="my-2 opacity-50" />
-          <p className="text-sm text-slate-500">
-            Enter your dates to see when you’ll have been married more than not.
+          <Separator className="my-4 bg-[#C4A4A4]/20" />
+          <p className="text-sm text-[#7A8A7A]">
+            Enter your dates to see when you'll have been married more than not.
           </p>
         </>
       )}
@@ -315,7 +315,7 @@ function AdvancedCalculator() {
       return
     }
     if (calculateForBoth && !spouseBirth) {
-      setError('Please enter your spouse’s birth date & time.')
+      setError("Please enter your spouse's birth date & time.")
       return
     }
 
@@ -323,7 +323,7 @@ function AdvancedCalculator() {
     const spouseBirthDate = calculateForBoth ? parseInputDateTime(spouseBirth) : null
     const wedding = parseInputDateTime(weddingDateTime)
     if (!youBirth || !wedding || (calculateForBoth && !spouseBirthDate)) {
-      setError('These dates don’t look right, please double-check.')
+      setError("These dates don't look right, please double-check.")
       return
     }
     if (wedding.getTime() <= youBirth.getTime()) {
@@ -331,7 +331,7 @@ function AdvancedCalculator() {
       return
     }
     if (calculateForBoth && spouseBirthDate && wedding.getTime() <= spouseBirthDate.getTime()) {
-      setError('Your wedding date & time needs to be after your spouse’s date & time of birth.')
+      setError("Your wedding date & time needs to be after your spouse's date & time of birth.")
       return
     }
 
@@ -370,35 +370,35 @@ function AdvancedCalculator() {
   return (
     <div className="space-y-6 text-left">
       {error && (
-        <div className="flex items-start gap-2 rounded-lg bg-rose-50/80 p-3 text-rose-700 ring-1 ring-rose-200/60">
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-100 text-xs font-semibold">!</span>
+        <div className="flex items-start gap-3 rounded-2xl bg-[#C4A4A4]/10 p-4 text-[#4A5D4A] ring-1 ring-[#C4A4A4]/30">
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#C4A4A4]/20 text-xs font-semibold">!</span>
           <div className="space-y-0.5">
-            <p className="text-sm">Let’s fix a couple of dates before we continue.</p>
-            <p className="text-xs text-rose-600/90">{error}</p>
+            <p className="text-sm font-medium">Let's fix a couple of dates before we continue.</p>
+            <p className="text-xs text-[#7A8A7A]">{error}</p>
           </div>
         </div>
       )}
 
-      <p className="text-sm text-slate-600 md:text-base">
-        See the exact moment you’ll have been married more than not.
+      <p className="text-sm text-[#7A8A7A] md:text-base">
+        See the exact moment you'll have been married more than not.
       </p>
 
-      <div className="flex items-center justify-between rounded-xl bg-white/60 p-4 ring-1 ring-slate-200/60">
-        <Label htmlFor="adv-both" className="text-slate-800">
+      <div className="flex items-center justify-between rounded-2xl bg-white/60 p-4 ring-1 ring-[#C4A4A4]/20">
+        <Label htmlFor="adv-both" className="text-[#4A5D4A] font-medium">
           Calculate for both of us
         </Label>
         <Switch
           id="adv-both"
           checked={calculateForBoth}
           onCheckedChange={setCalculateForBoth}
-          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 data-[state=checked]:bg-rose-600"
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2 data-[state=checked]:bg-[#C4A4A4]"
         />
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <Label htmlFor="you-birth" className="text-slate-800">
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="you-birth" className="text-[#4A5D4A] font-medium">
               Your date & time of birth
             </Label>
             <Input
@@ -406,27 +406,27 @@ function AdvancedCalculator() {
               type="datetime-local"
               value={yourBirth}
               onChange={(e) => setYourBirth(e.target.value)}
-              className="bg-white/90 focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+              className="bg-white/80 border-[#C4A4A4]/30 text-[#4A5D4A] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
             />
           </div>
 
           {calculateForBoth && (
-            <div className="space-y-1">
-              <Label htmlFor="spouse-birth" className="text-slate-800">
-                Spouse’s date & time of birth
+            <div className="space-y-2">
+              <Label htmlFor="spouse-birth" className="text-[#4A5D4A] font-medium">
+                Spouse's date & time of birth
               </Label>
               <Input
                 id="spouse-birth"
                 type="datetime-local"
                 value={spouseBirth}
                 onChange={(e) => setSpouseBirth(e.target.value)}
-                className="bg-white/90 focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+                className="bg-white/80 border-[#C4A4A4]/30 text-[#4A5D4A] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
               />
             </div>
           )}
 
-          <div className="space-y-1">
-            <Label htmlFor="wedding-dt" className="text-slate-800">
+          <div className="space-y-2">
+            <Label htmlFor="wedding-dt" className="text-[#4A5D4A] font-medium">
               Wedding date & time
             </Label>
             <Input
@@ -434,7 +434,7 @@ function AdvancedCalculator() {
               type="datetime-local"
               value={weddingDateTime}
               onChange={(e) => setWeddingDateTime(e.target.value)}
-              className="bg-white/90 focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+              className="bg-white/80 border-[#C4A4A4]/30 text-[#4A5D4A] rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
             />
           </div>
         </div>
@@ -446,7 +446,7 @@ function AdvancedCalculator() {
         >
           <Button
             type="submit"
-            className="bg-rose-600 text-white shadow-sm hover:bg-rose-600/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-rose-400 focus-visible:ring-offset-2"
+            className="bg-[#C4A4A4] text-white shadow-sm hover:bg-[#B39494] rounded-full px-6 py-2 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A4A4] focus-visible:ring-offset-2"
           >
             Calculate exact MarriedMore moment
           </Button>
@@ -455,7 +455,7 @@ function AdvancedCalculator() {
 
       {result ? (
         <>
-          <Separator className="my-2 opacity-50" />
+          <Separator className="my-4 bg-[#C4A4A4]/20" />
           <div
             className={
               result.spouse
@@ -466,41 +466,41 @@ function AdvancedCalculator() {
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="rounded-xl bg-rose-50/70 p-6 shadow-sm ring-1 ring-rose-200/60"
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="rounded-2xl bg-white/90 p-6 shadow-sm ring-1 ring-[#C4A4A4]/20"
             >
-              <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
+              <p className="text-xs font-medium uppercase tracking-wide text-[#7A8A7A]">
                 {result.you.label}
               </p>
-              <div className="mt-1 text-xl font-semibold text-rose-600 md:text-2xl">
+              <div className="mt-2 font-[var(--font-cormorant)] text-2xl font-semibold italic text-[#4A5D4A] md:text-3xl">
                 {formatLongDateTime(result.you.marriedMoreDateTime)}
               </div>
-              <p className="mt-1 text-slate-700">
-                You’ll be{' '}
-                <span className="font-medium text-rose-600">
+              <p className="mt-2 text-[#4A5D4A]">
+                You'll be{' '}
+                <span className="font-semibold text-[#C4A4A4]">
                   {result.you.ageYears} years old
                 </span>
                 .
               </p>
               {result.you.isFuture ? (
-                <p className="text-slate-700">
+                <p className="text-[#4A5D4A]">
                   In{' '}
-                  <span className="font-medium text-rose-600">
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.you.days} days
                   </span>{' '}
                   and{' '}
-                  <span className="font-medium text-rose-600">
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.you.hours} hours
                   </span>
                   .
                 </p>
               ) : (
-                <p className="text-slate-700">
-                  <span className="font-medium text-rose-600">
+                <p className="text-[#4A5D4A]">
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.you.days} days
                   </span>{' '}
                   and{' '}
-                  <span className="font-medium text-rose-600">
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.you.hours} hours
                   </span>{' '}
                   ago.
@@ -512,41 +512,41 @@ function AdvancedCalculator() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2, ease: 'easeOut', delay: 0.03 }}
-                className="rounded-xl bg-rose-50/70 p-6 shadow-sm ring-1 ring-rose-200/60"
+                transition={{ duration: 0.3, ease: 'easeOut', delay: 0.05 }}
+                className="rounded-2xl bg-white/90 p-6 shadow-sm ring-1 ring-[#C4A4A4]/20"
               >
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#7A8A7A]">
                   {result.spouse.label}
                 </p>
-                <div className="mt-1 text-xl font-semibold text-rose-600 md:text-2xl">
+                <div className="mt-2 font-[var(--font-cormorant)] text-2xl font-semibold italic text-[#4A5D4A] md:text-3xl">
                   {formatLongDateTime(result.spouse.marriedMoreDateTime)}
                 </div>
-                <p className="mt-1 text-slate-700">
-                  They’ll be{' '}
-                  <span className="font-medium text-rose-600">
+                <p className="mt-2 text-[#4A5D4A]">
+                  They'll be{' '}
+                  <span className="font-semibold text-[#C4A4A4]">
                     {result.spouse.ageYears} years old
                   </span>
                   .
                 </p>
                 {result.spouse.isFuture ? (
-                  <p className="text-slate-700">
+                  <p className="text-[#4A5D4A]">
                     In{' '}
-                    <span className="font-medium text-rose-600">
+                    <span className="font-semibold text-[#C4A4A4]">
                       {result.spouse.days} days
                     </span>{' '}
                     and{' '}
-                    <span className="font-medium text-rose-600">
+                    <span className="font-semibold text-[#C4A4A4]">
                       {result.spouse.hours} hours
                     </span>
                     .
                   </p>
                 ) : (
-                  <p className="text-slate-700">
-                    <span className="font-medium text-rose-600">
+                  <p className="text-[#4A5D4A]">
+                    <span className="font-semibold text-[#C4A4A4]">
                       {result.spouse.days} days
                     </span>{' '}
                     and{' '}
-                    <span className="font-medium text-rose-600">
+                    <span className="font-semibold text-[#C4A4A4]">
                       {result.spouse.hours} hours
                     </span>{' '}
                     ago.
@@ -557,16 +557,16 @@ function AdvancedCalculator() {
           </div>
 
           {result.spouse && result.bothPast && (
-            <p className="text-center text-sm text-slate-600">
+            <p className="text-center text-sm text-[#7A8A7A]">
               You have both been MarriedMore—keep going. 💍
             </p>
           )}
         </>
       ) : (
         <>
-          <Separator className="my-2 opacity-50" />
-          <p className="text-sm text-slate-500">
-            Enter your dates to see the exact moment you’ll have been married more than not.
+          <Separator className="my-4 bg-[#C4A4A4]/20" />
+          <p className="text-sm text-[#7A8A7A]">
+            Enter your dates to see the exact moment you'll have been married more than not.
           </p>
         </>
       )}
@@ -578,62 +578,64 @@ export default function MarriedMorePage() {
   const [tabValue, setTabValue] = useState<'basic' | 'advanced'>('basic')
 
   return (
-    <div className="relative min-h-[100svh] w-full bg-gradient-to-b from-[#FFF9F3] via-[#FFF4F5] to-[#FDEDED] text-slate-700">
-      {/* Ambient gradient blobs for depth */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-16 -left-20 h-80 w-80 rounded-full bg-gradient-to-tr from-rose-200/60 via-pink-100/40 to-transparent blur-3xl" />
-        <div className="absolute -bottom-16 -right-24 h-96 w-96 rounded-full bg-gradient-to-tr from-pink-200/60 via-rose-100/40 to-transparent blur-3xl" />
+    <div className="relative min-h-[100svh] w-full bg-gradient-to-b from-[#FAF6F1] via-[#F8F4EF] to-[#F5F0EA] text-[#4A5D4A]">
+      {/* Subtle texture overlay */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30">
+        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-[#C4A4A4]/10 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-[#C4A4A4]/10 blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-5xl flex-col items-center justify-center px-6 py-20 sm:px-8 sm:py-24 md:px-10 lg:px-12 lg:py-28">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 py-16 sm:px-8 sm:py-20 md:px-10 lg:px-12">
         {/* Hero */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="w-full max-w-2xl text-center"
         >
-          <div className="mb-4 flex w-full justify-center">
-            <Badge
-              variant="secondary"
-              className="rounded-full border border-rose-200/60 bg-rose-100 text-rose-700 shadow-sm"
-            >
-              Celebrate lasting love
-            </Badge>
-          </div>
-
-          <h1 className="mb-3 text-3xl font-semibold tracking-tight text-slate-800 md:text-4xl">
-            Find your <span className="text-rose-600">MarriedMore</span> date
+          <h1 className="mb-2 font-[var(--font-cormorant)] text-5xl font-medium italic text-[#4A5D4A] md:text-6xl">
+            MarriedMore
           </h1>
 
-          <p className="mx-auto max-w-xl text-base text-slate-600 md:text-lg">
-            The day you’ve officially spent more of your life married than not.
-          </p>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-slate-500">
-            A gentle reminder that every year together is a gift.
+          <p className="mb-8 text-base text-[#7A8A7A] md:text-lg">
+            Building stronger partnerships
           </p>
         </motion.div>
 
         {/* Calculator Card */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.05 }}
-          className="mt-8 w-full max-w-2xl"
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+          className="w-full max-w-2xl"
         >
-          <Card className="rounded-2xl border border-slate-200/60 bg-white/70 shadow-lg backdrop-blur-sm">
-            <CardHeader className="space-y-1 md:space-y-2">
-              <CardTitle className="text-xl text-slate-800">
-                MarriedMore calculator
-              </CardTitle>
-              <CardDescription className="text-slate-600">
-                Pick simple or advanced to find your MarriedMore milestone.
-              </CardDescription>
+          <Card className="rounded-3xl border-0 bg-white/70 shadow-lg backdrop-blur-sm ring-1 ring-[#C4A4A4]/10">
+            <CardHeader className="space-y-2 pb-4 md:space-y-3">
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
+                className="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-[#C4A4A4]/10"
+              >
+                <p className="text-[#4A5D4A]">
+                  Hey there! Welcome — I'm so glad you're here.
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.35 }}
+                className="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-[#C4A4A4]/10"
+              >
+                <p className="text-[#4A5D4A]">
+                  Find out the day you've officially spent more of your life married than not. A gentle reminder that every year together is a gift.
+                </p>
+              </motion.div>
             </CardHeader>
-            <Separator />
-            <CardContent className="py-10">
+            <Separator className="bg-[#C4A4A4]/15" />
+            <CardContent className="py-8">
               <div className="mx-auto w-full max-w-lg">
-                <p className="mb-4 text-center text-sm text-slate-600 md:text-base">
+                <p className="mb-5 text-center text-sm text-[#7A8A7A] md:text-base">
                   Choose a simple date-only view—or the exact time for extra clarity.
                 </p>
 
@@ -643,17 +645,17 @@ export default function MarriedMorePage() {
                   className="w-full"
                 >
                   <TabsList
-                    className="grid w-full grid-cols-2 rounded-full bg-transparent p-1 ring-1 ring-rose-200/60 backdrop-blur-sm"
+                    className="grid w-full grid-cols-2 rounded-full bg-[#FAF6F1] p-1 ring-1 ring-[#C4A4A4]/20"
                   >
                     <TabsTrigger
                       value="basic"
-                      className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-sm"
+                      className="rounded-full px-4 py-2.5 text-sm font-medium text-[#7A8A7A] transition-all data-[state=active]:bg-white data-[state=active]:text-[#E8B4BC] data-[state=active]:shadow-sm"
                     >
                       Basic
                     </TabsTrigger>
                     <TabsTrigger
                       value="advanced"
-                      className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-sm"
+                      className="rounded-full px-4 py-2.5 text-sm font-medium text-[#7A8A7A] transition-all data-[state=active]:bg-white data-[state=active]:text-[#E8B4BC] data-[state=active]:shadow-sm"
                     >
                       Advanced
                     </TabsTrigger>
@@ -701,5 +703,3 @@ export default function MarriedMorePage() {
     </div>
   )
 }
-
-
